@@ -18,7 +18,6 @@ namespace MainC
             {
                 return 0;
             }
-            Console.WriteLine(args.Length);
             if(args.Length > 1) inputChecker(args);
             if (args.Length == 1) {
                 if (!validFileInput(args[0])) return 1; 
