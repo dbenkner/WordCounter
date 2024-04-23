@@ -8,25 +8,29 @@ namespace WordCounter
 {
     public class CountingWords
     {
-        public static int ByteCount(string path)
+        public static int ByteCount(string fullText)
         {
-            return File.ReadAllBytes(path).Length;  
+            var bytes = Encoding.UTF8.GetByteCount(fullText);
+            return bytes;
         }
 
-        public static int LineCount(string path)
+        public static int LineCount(string fullText)
         {
             int ans;
-            ans = File.ReadAllLines(path).Length;  
+            var textArr = fullText.Split('\r');
+            ans = fullText.Count(x => x == '\n');   
             return ans;
         }
-        public static int WordCount(string path)
+        public static int WordCount(string fullText)
         {
-            StreamReader sr = new StreamReader(path);
-            var sample = sr.ReadToEnd().ToString();
-            sr.Close(); 
             char[] delimiters = new char[] { ' ', '\n', '\r', '\t' };
-            int ans = sample.Split(delimiters, StringSplitOptions.RemoveEmptyEntries).Length;
+            int ans = fullText.Split(delimiters, StringSplitOptions.RemoveEmptyEntries).Length;
             return ans;
+        }
+        public static int CharacterCount(string fullText)
+        {
+            int wc = fullText.Length;
+            return wc;
         }
     }
 }
